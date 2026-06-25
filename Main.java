@@ -45,9 +45,7 @@ public class Main {
         else if(b =='h') {endcolumn=8;}
         return new int[]{startcolumn,endcolumn};
     }
-    // ── BOARD NOW USES SIMPLE TEXT CODES INSTEAD OF UNICODE SYMBOLS ──────────
-    // White pieces: wK wQ wR wB wN wP
-    // Black pieces: bK bQ bR bB bN bP
+
     static String[][] BoardStructure(){
         String[][] board = new String[8][8];
         board[0][4] = "wK"; board[7][4] = "bK";
@@ -67,10 +65,7 @@ public class Main {
                 board[i][j] = "Empty";
         return board;
     }
-    // ── PRINTBOARD UPDATED FOR FIXED-WIDTH TEXT CODES ─────────────────────────
-    // Each cell is exactly 4 visible characters wide between separators
-    // (e.g. "| - |" or "| wK|"), matching the "+---+" border segments below,
-    // so every column lines up perfectly no matter what's in the cell.
+
     static void PrintBoard(String[][] board){
         System.out.println("________________________________");
         System.out.println("    a   b   c   d   e   f   g   h");
@@ -79,9 +74,9 @@ public class Main {
             System.out.print((i + 1) + " |");
             for (int j = 0; j < 8; j++) {
                 if (board[i][j].equals("Empty")) {
-                    System.out.print(" - |");   // empty square (4 chars: space,-,space,|)
+                    System.out.print(" - |");   
                 } else {
-                    System.out.print(" " + board[i][j] + "|"); // e.g. " wK|" (4 chars)
+                    System.out.print(" " + board[i][j] + "|"); 
                 }
             }
             System.out.println();
@@ -90,11 +85,11 @@ public class Main {
         System.out.println("    a   b   c   d   e   f   g   h");
         System.out.println("________________________________");
     }
-    // ─────────────────────────────────────────────────────────────────────────
+
     static boolean range(int r, int c) {
         return r >= 0 && r <= 7 && c >= 0 && c <= 7;
     }
-    // Piece colour is now just the first character of the code: 'w' or 'b'
+
     static char PieceType(String p) {
         if (p.equals("Empty")) { return '-'; }
         char first = p.charAt(0);
@@ -113,7 +108,7 @@ public class Main {
         if(SameTypePieces){ return false; }
         int RowDiff = ToRow - FromRow;
         int ColDiff = ToCol - FromCol;
-        // Piece kind is now the second character of the code: P, R, N, B, Q, K
+ 
         char kind = piece.charAt(1);
         if (kind == 'P') {
             return PawnMove(piece, FromRow, FromCol, ToRow, ToCol, destination);
